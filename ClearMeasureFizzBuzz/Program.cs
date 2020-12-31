@@ -20,9 +20,9 @@ namespace ClearMeasureFizzBuzz
                 statementBuilder.Build("Buzz", 5)
             };
 
-            FizzBuzz fb = new FizzBuzz(statements);
+            FizzBuzz fb = new FizzBuzz();
 
-            foreach (var item in fb.Run(100))
+            foreach (var item in fb.Run(100, statements))
             {
                 Console.WriteLine(item);
             }

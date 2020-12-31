@@ -6,14 +6,7 @@ namespace FizzBuzzEnterprise
 {
     public class FizzBuzz
     {
-        private List<ModuloStatement> _statements;
-
         public FizzBuzz() { }
-
-        public FizzBuzz(List<ModuloStatement> statements)
-        {
-            _statements = statements;
-        }
 
         /// <summary>
         /// Performs a normal FizzBuzz calculation using hardcoded conditions
@@ -56,11 +49,11 @@ namespace FizzBuzzEnterprise
         /// </summary>
         /// <param name="upperBound">The number where the FizzBuzz calculation should stop</param>
         /// <returns>Yield returns a string with the result of the operation</returns>
-        public IEnumerable<string> Run(int upperBound)
+        public IEnumerable<string> Run(int upperBound, List<ModuloStatement> moduloStatements)
         {
-            if (!_statements.Any())
+            if (!moduloStatements.Any())
             {
-                throw new InvalidOperationException("There are no statements for FizzBuzz to evaluate");
+                throw new ArgumentException("There are no statements for FizzBuzz to evaluate");
             }
 
             if (upperBound <= 1)
@@ -70,24 +63,40 @@ namespace FizzBuzzEnterprise
 
             for (int i = 1; i <= upperBound; i++)
             {
-                var successfulModuloOperations = _statements.Where(op => op.Logic(i)).ToList();
+                var successfulModuloOperation = OrderAndEvaluateStatements(moduloStatements, i);
 
-                if (successfulModuloOperations.Count > 1)
+                if (successfulModuloOperation != null)
                 {
-                    var trueOperationWithMostModuli = successfulModuloOperations.OrderByDescending(op => op.NumberOfModuli)
-                                                                                .FirstOrDefault();
-
-                    yield return trueOperationWithMostModuli.Result;
-                }
-                else if (successfulModuloOperations.Count == 1)
-                {
-                    yield return successfulModuloOperations.First().Result;
+                    yield return successfulModuloOperation.Result;
                 }
                 else
                 {
                     yield return i.ToString();
                 }
             }
+        }
+
+        /// <summary>
+        /// Orders the list of <see cref="ModuloStatement"/> by number of moduli being evaluated and 
+        /// returns the first <see cref="ModuloStatement"/> that evaluates to true
+        /// </summary>
+        /// <param name="statements">The list of <see cref="ModuloStatement"/></param>
+        /// <param name="currentLoopIteration">The integer representing the current step in the FizzBuzz loop</param>
+        /// <returns>If the statement evaluates to true, returns the <see cref="ModuloStatement"/> object. Otherwise,
+        /// this method will return <b>null</b>.</returns>
+        private ModuloStatement OrderAndEvaluateStatements(List<ModuloStatement> statements, int currentLoopIteration)
+        {
+            var sortedStatements = statements.OrderByDescending(op => op.NumberOfModuli);
+
+            foreach (var moduloStatement in statements)
+            {
+                if (moduloStatement.Logic(currentLoopIteration))
+                {
+                    return moduloStatement;
+                }
+            }
+
+            return null;
         }
     }
 }

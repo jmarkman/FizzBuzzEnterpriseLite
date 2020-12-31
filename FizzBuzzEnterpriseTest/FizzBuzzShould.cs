@@ -11,21 +11,26 @@ namespace FizzBuzzEnterpriseTest
     {
         private const int NumberDivisibleByThree = 3;
         private const int NumberDivisibleByFive = 5;
+        private const int NumberDivisibleByTwo = 2;
         private const int NumberDivisibleByThreeAndFive = 30;
-        private const string DivisibleByBothOutput = "FizzBuzz";
+        private const int NumberDivisibleByTwoAndFour = 8;
+        private const string DivisibleByThreeAndFiveOutput = "FizzBuzz";
         private const string DivisibleByThreeOutput = "Fizz";
         private const string DivisibleByFiveOutput = "Buzz";
 
-        private FizzBuzz _hardcodedFizzBuzzUnderTest;
-        private FizzBuzz _fizzBuzzWithCustomConditionsUnderTest;
+        private readonly List<ModuloStatement> _emptyListOfModuloStatements = new List<ModuloStatement>();
+
+        private FizzBuzz _fizzBuzzUnderTest;
+        private List<ModuloStatement> _moduloStatements;
+        
 
         [SetUp]
         public void Setup()
         {
-            _hardcodedFizzBuzzUnderTest = new FizzBuzz();
+            _fizzBuzzUnderTest = new FizzBuzz();
 
             ModuloStatementBuilder builder = new ModuloStatementBuilder();
-            List<ModuloStatement> moduloStatements = new List<ModuloStatement>()
+            _moduloStatements = new List<ModuloStatement>()
             {
                 builder.Build("Foo", 2),
                 builder.Build("Bar", 4),
@@ -34,22 +39,20 @@ namespace FizzBuzzEnterpriseTest
                 builder.Build("Fizz", 3),
                 builder.Build("Buzz", 5)
             };
-
-            _fizzBuzzWithCustomConditionsUnderTest = new FizzBuzz(moduloStatements);
         }
 
         [Test]
         public void ReturnFizzBuzz_IfDivisibleByThreeAndFive()
         {
-            var lastElement = _hardcodedFizzBuzzUnderTest.RunHardcoded(NumberDivisibleByThreeAndFive).LastOrDefault();
+            var lastElement = _fizzBuzzUnderTest.RunHardcoded(NumberDivisibleByThreeAndFive).LastOrDefault();
 
-            Assert.That(lastElement, Is.EqualTo(DivisibleByBothOutput));
+            Assert.That(lastElement, Is.EqualTo(DivisibleByThreeAndFiveOutput));
         }
 
         [Test]
         public void ReturnFizz_IfDivisibleByThree()
         {
-            var lastElement = _hardcodedFizzBuzzUnderTest.RunHardcoded(NumberDivisibleByThree).LastOrDefault();
+            var lastElement = _fizzBuzzUnderTest.RunHardcoded(NumberDivisibleByThree).Last();
 
             Assert.That(lastElement, Is.EqualTo(DivisibleByThreeOutput));
         }
@@ -57,24 +60,34 @@ namespace FizzBuzzEnterpriseTest
         [Test]
         public void ReturnBuzz_IfDivisibleByFive()
         {
-            var lastElement = _hardcodedFizzBuzzUnderTest.RunHardcoded(NumberDivisibleByFive).LastOrDefault();
+            var lastElement = _fizzBuzzUnderTest.RunHardcoded(NumberDivisibleByFive).Last();
 
             Assert.That(lastElement, Is.EqualTo(DivisibleByFiveOutput));
         }
 
         [Test]
+        public void ReturnUserSpecifiedReuslt_IfDivisibleBy_OneCustomModuli()
+        {
+            var userSpecifiedModuloStatement = _moduloStatements.Where(s => s.Result == "Foo" && s.NumberOfModuli == 1).First();
+
+            var lastElement = _fizzBuzzUnderTest.Run(NumberDivisibleByTwo, _moduloStatements).Last();
+
+            Assert.That(lastElement, Is.EqualTo(userSpecifiedModuloStatement.Result));
+        }
+
+        [Test]
         public void ThrowArgumentException_IfNoCustomModuloStatementsProvided()
         {
-
+            Assert.That(() => _fizzBuzzUnderTest.Run(3, _emptyListOfModuloStatements).Last(), Throws.TypeOf<ArgumentException>());
         }
 
         [Test]
         public void ThrowArgumentException_IfSuppliedUpperBound_IsLessThanOrEqualToOne()
         {
-            Assert.That(() => _hardcodedFizzBuzzUnderTest.RunHardcoded(1).ToList(), Throws.TypeOf<ArgumentException>());
-            Assert.That(() => _hardcodedFizzBuzzUnderTest.RunHardcoded(0).ToList(), Throws.TypeOf<ArgumentException>());
-            Assert.That(() => _hardcodedFizzBuzzUnderTest.Run(1).ToList(), Throws.TypeOf<ArgumentException>());
-            Assert.That(() => _hardcodedFizzBuzzUnderTest.Run(0).ToList(), Throws.TypeOf<ArgumentException>());
+            Assert.That(() => _fizzBuzzUnderTest.RunHardcoded(1).ToList(), Throws.TypeOf<ArgumentException>());
+            Assert.That(() => _fizzBuzzUnderTest.RunHardcoded(0).ToList(), Throws.TypeOf<ArgumentException>());
+            Assert.That(() => _fizzBuzzUnderTest.Run(1, _moduloStatements).ToList(), Throws.TypeOf<ArgumentException>());
+            Assert.That(() => _fizzBuzzUnderTest.Run(0, _moduloStatements).ToList(), Throws.TypeOf<ArgumentException>());
         }
     }
 }
