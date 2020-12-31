@@ -20,7 +20,7 @@ namespace FizzBuzzEnterprise
         /// </summary>
         /// <param name="upperBound">Where the FizzBuzz iteration should stop</param>
         /// <returns></returns>
-        public IEnumerable<string> YieldFizzBuzz(int upperBound)
+        public IEnumerable<string> RunHardcoded(int upperBound)
         {
             if (upperBound <= 1)
             {
@@ -58,6 +58,11 @@ namespace FizzBuzzEnterprise
         /// <returns>Yield returns a string with the result of the operation</returns>
         public IEnumerable<string> Run(int upperBound)
         {
+            if (!_statements.Any())
+            {
+                throw new InvalidOperationException("There are no statements for FizzBuzz to evaluate");
+            }
+
             if (upperBound <= 1)
             {
                 throw new ArgumentException("Supplied value is less than the starting position, FizzBuzz will not occur");
@@ -69,9 +74,8 @@ namespace FizzBuzzEnterprise
 
                 if (successfulModuloOperations.Count > 1)
                 {
-                    var trueOperationWithMostModuli = successfulModuloOperations
-                                                            .OrderByDescending(op => op.NumberOfModuli)
-                                                            .FirstOrDefault();
+                    var trueOperationWithMostModuli = successfulModuloOperations.OrderByDescending(op => op.NumberOfModuli)
+                                                                                .FirstOrDefault();
 
                     yield return trueOperationWithMostModuli.Result;
                 }
