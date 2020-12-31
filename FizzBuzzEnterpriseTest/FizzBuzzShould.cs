@@ -76,6 +76,16 @@ namespace FizzBuzzEnterpriseTest
         }
 
         [Test]
+        public void ReturnUserSpecifiedResult_IfDivisibleBy_TwoOrMoreCustomModuli()
+        {
+            var userSpecifiedModuloStatement = _moduloStatements.Where(s => s.Result == "FooBar" && s.NumberOfModuli > 1).First();
+
+            var lastElement = _fizzBuzzUnderTest.Run(NumberDivisibleByTwoAndFour, _moduloStatements).Last();
+
+            Assert.That(lastElement, Is.EqualTo(userSpecifiedModuloStatement.Result));
+        }
+
+        [Test]
         public void ThrowArgumentException_IfNoCustomModuloStatementsProvided()
         {
             Assert.That(() => _fizzBuzzUnderTest.Run(3, _emptyListOfModuloStatements).Last(), Throws.TypeOf<ArgumentException>());

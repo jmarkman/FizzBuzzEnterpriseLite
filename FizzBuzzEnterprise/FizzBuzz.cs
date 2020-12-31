@@ -88,7 +88,7 @@ namespace FizzBuzzEnterprise
         {
             var sortedStatements = statements.OrderByDescending(op => op.NumberOfModuli);
 
-            foreach (var moduloStatement in statements)
+            foreach (var moduloStatement in sortedStatements)
             {
                 if (moduloStatement.Logic(currentLoopIteration))
                 {
