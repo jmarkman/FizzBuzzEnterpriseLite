@@ -9,9 +9,9 @@ namespace FizzBuzzEnterpriseTest
     public class FizzBuzzShould
     {
         private FizzBuzz _fizzBuzzUnderTest;
-        private int _numberDivisibleByThree = 3;
-        private int _numberDivisibleByFive = 5;
-        private int _numberDivisibleByThreeAndFive = 30;
+        private const int NumberDivisibleByThree = 3;
+        private const int NumberDivisibleByFive = 5;
+        private const int NumberDivisibleByThreeAndFive = 30;
         
         [SetUp]
         public void Setup()
@@ -22,7 +22,7 @@ namespace FizzBuzzEnterpriseTest
         [Test]
         public void ReturnFizzBuzz_IfDivisibleByThreeAndFive()
         {
-            var lastElement = _fizzBuzzUnderTest.YieldFizzBuzz(_numberDivisibleByThreeAndFive).LastOrDefault();
+            var lastElement = _fizzBuzzUnderTest.YieldFizzBuzz(NumberDivisibleByThreeAndFive).LastOrDefault();
 
             Assert.That(lastElement, Is.EqualTo("FizzBuzz"));
         }
@@ -30,7 +30,7 @@ namespace FizzBuzzEnterpriseTest
         [Test]
         public void ReturnFizz_IfDivisibleByThree()
         {
-            var lastElement = _fizzBuzzUnderTest.YieldFizzBuzz(_numberDivisibleByThree).LastOrDefault();
+            var lastElement = _fizzBuzzUnderTest.YieldFizzBuzz(NumberDivisibleByThree).LastOrDefault();
 
             Assert.That(lastElement, Is.EqualTo("Fizz"));
         }
@@ -38,7 +38,7 @@ namespace FizzBuzzEnterpriseTest
         [Test]
         public void ReturnBuzz_IfDivisibleByFive()
         {
-            var lastElement = _fizzBuzzUnderTest.YieldFizzBuzz(_numberDivisibleByFive).LastOrDefault();
+            var lastElement = _fizzBuzzUnderTest.YieldFizzBuzz(NumberDivisibleByFive).LastOrDefault();
 
             Assert.That(lastElement, Is.EqualTo("Buzz"));
         }
