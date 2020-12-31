@@ -21,10 +21,20 @@ namespace FizzBuzzEnterprise
         /// </summary>
         public string Result { get; private set; }
 
-        public ModuloStatement(Func<int, bool> logic, string result)
+        /// <summary>
+        /// The number of moduli being checked in one operation (i.e., is the input
+        /// for the logic being checked for divisibility against a single number or
+        /// is it being checked against multiple numbers)
+        /// </summary>
+        public int NumberOfModuli { get; set; }
+
+        public ModuloStatement() { }
+
+        public ModuloStatement(Func<int, bool> logic, string result, int numModuli)
         {
             Logic = logic;
             Result = result;
+            NumberOfModuli = numModuli;
         }
     }
 }

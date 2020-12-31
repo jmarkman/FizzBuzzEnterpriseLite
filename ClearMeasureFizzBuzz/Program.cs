@@ -12,6 +12,9 @@ namespace ClearMeasureFizzBuzz
 
             List<ModuloStatement> statements = new List<ModuloStatement>()
             {
+                statementBuilder.Build("Foo", 2),
+                statementBuilder.Build("Bar", 4),
+                statementBuilder.Build("FooBar", 2, 4),
                 statementBuilder.Build("FizzBuzz", 3, 5),
                 statementBuilder.Build("Fizz", 3),
                 statementBuilder.Build("Buzz", 5)
@@ -19,7 +22,7 @@ namespace ClearMeasureFizzBuzz
 
             FizzBuzz fb = new FizzBuzz(statements);
 
-            foreach (var item in fb.CustomFizzBuzz(100))
+            foreach (var item in fb.Run(100))
             {
                 Console.WriteLine(item);
             }

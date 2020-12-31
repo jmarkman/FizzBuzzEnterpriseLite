@@ -51,7 +51,12 @@ namespace FizzBuzzEnterprise
             }
         }
 
-        public IEnumerable<string> CustomFizzBuzz(int upperBound)
+        /// <summary>
+        /// Performs a normal FizzBuzz calculation
+        /// </summary>
+        /// <param name="upperBound">The number where the FizzBuzz calculation should stop</param>
+        /// <returns>Yield returns a string with the result of the operation</returns>
+        public IEnumerable<string> Run(int upperBound)
         {
             if (upperBound <= 1)
             {
@@ -60,28 +65,24 @@ namespace FizzBuzzEnterprise
 
             for (int i = 1; i <= upperBound; i++)
             {
-                var trueModuloOperations = _statements.Where(op => op.Logic(i)).ToList();
+                var successfulModuloOperations = _statements.Where(op => op.Logic(i)).ToList();
 
-                if (trueModuloOperations.Count == 1)
+                if (successfulModuloOperations.Count > 1)
                 {
-                    yield return trueModuloOperations.First().Result;
+                    var trueOperationWithMostModuli = successfulModuloOperations
+                                                            .OrderByDescending(op => op.NumberOfModuli)
+                                                            .FirstOrDefault();
+
+                    yield return trueOperationWithMostModuli.Result;
+                }
+                else if (successfulModuloOperations.Count == 1)
+                {
+                    yield return successfulModuloOperations.First().Result;
                 }
                 else
                 {
                     yield return i.ToString();
                 }
-
-                //foreach (var modulo in _statements)
-                //{
-                //    if (modulo.Logic(i))
-                //    {
-                //        yield return modulo.Result;
-                //    }
-                //    else
-                //    {
-                //        yield return i.ToString();
-                //    }
-                //}
             }
         }
     }

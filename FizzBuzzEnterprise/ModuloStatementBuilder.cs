@@ -1,9 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace FizzBuzzEnterprise
 {
+    /// <summary>
+    /// Handles the creation of <see cref="ModuloStatement"/>, including
+    /// creating the modulo math logic
+    /// </summary>
     public class ModuloStatementBuilder
     {
         public ModuloStatementBuilder() { }
@@ -16,7 +19,7 @@ namespace FizzBuzzEnterprise
         /// <returns></returns>
         public ModuloStatement Build(string resultToDisplay, params int[] moduli)
         {
-            return new ModuloStatement(BuildModuloLogic(moduli), resultToDisplay);
+            return new ModuloStatement(BuildModuloLogic(moduli), resultToDisplay, moduli.Length);
         }
 
         /// <summary>
@@ -30,21 +33,7 @@ namespace FizzBuzzEnterprise
         {
             Func<int, bool> divisible = (i) =>
             {
-                bool isDivisible = false;
-
-                foreach (var number in moduli)
-                {
-                    if (i % number == 0)
-                    {
-                        isDivisible = true;
-                    }
-                    else
-                    {
-                        isDivisible = false;
-                    }
-                }
-
-                return isDivisible;
+                return moduli.All(m => i % m == 0);
             };
 
             return divisible;
