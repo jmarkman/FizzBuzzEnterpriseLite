@@ -7,7 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClearMeasureFizzBuzz", "Cle
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzzEnterprise", "FizzBuzzEnterprise\FizzBuzzEnterprise.csproj", "{47C9ACC7-1459-4528-B081-459084DB22B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzBuzzEnterpriseTest", "FizzBuzzEnterpriseTest\FizzBuzzEnterpriseTest.csproj", "{51D2D4DE-5343-4D48-873B-34A14938121C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzzEnterpriseTest", "FizzBuzzEnterpriseTest\FizzBuzzEnterpriseTest.csproj", "{51D2D4DE-5343-4D48-873B-34A14938121C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B25E0168-B362-47AF-B33B-0EB99CB44345}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{16AA9D7A-2DC0-4456-BC07-6A2C370983F5}"
+	ProjectSection(SolutionItems) = preProject
+		ConceptualDocumentation.md = ConceptualDocumentation.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +40,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{16AA9D7A-2DC0-4456-BC07-6A2C370983F5} = {B25E0168-B362-47AF-B33B-0EB99CB44345}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {34A7AB3F-D68E-4602-975D-79BCD2CAF959}
