@@ -19,6 +19,8 @@ namespace FizzBuzzEnterprise
         /// <returns></returns>
         public ModuloStatement Build(string resultToDisplay, params int[] moduli)
         {
+            ValidateBuildParameters(resultToDisplay, moduli);
+
             return new ModuloStatement(BuildModuloLogic(moduli), resultToDisplay, moduli.Length);
         }
 
@@ -37,6 +39,25 @@ namespace FizzBuzzEnterprise
             };
 
             return divisible;
+        }
+
+        /// <summary>
+        /// Ensures that the input supplied to <see cref="Build(string, int[])"/>
+        /// will create a usable modulo statement
+        /// </summary>
+        /// <param name="result">The text to be used if the modulo operation is successful</param>
+        /// <param name="moduli">The number or numbers to use for modulo calculation</param>
+        private void ValidateBuildParameters(string result, int[] moduli)
+        {
+            if (string.IsNullOrWhiteSpace(result))
+            {
+                throw new ArgumentException("No custom output was specified");
+            }
+
+            if (!moduli.Any())
+            {
+                throw new ArgumentException("No numbers for modulo calculation were provided");
+            }
         }
     }
 }

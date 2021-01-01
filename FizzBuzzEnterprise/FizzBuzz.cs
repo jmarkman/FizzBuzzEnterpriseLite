@@ -13,7 +13,7 @@ namespace FizzBuzzEnterprise
         /// </summary>
         /// <param name="upperBound">Where the FizzBuzz iteration should stop</param>
         /// <returns></returns>
-        public IEnumerable<string> RunHardcoded(int upperBound)
+        public IEnumerable<string> Run(int upperBound)
         {
             if (upperBound <= 1)
             {
@@ -48,18 +48,13 @@ namespace FizzBuzzEnterprise
         /// Performs a normal FizzBuzz calculation
         /// </summary>
         /// <param name="upperBound">The number where the FizzBuzz calculation should stop</param>
+        /// <param name="moduloStatements">A list of <see cref="ModuloStatement"/> objects containing
+        /// custom modulo expressions to be validated and the output to return if the expression is
+        /// correct</param>
         /// <returns>Yield returns a string with the result of the operation</returns>
         public IEnumerable<string> Run(int upperBound, List<ModuloStatement> moduloStatements)
         {
-            if (!moduloStatements.Any())
-            {
-                throw new ArgumentException("There are no statements for FizzBuzz to evaluate");
-            }
-
-            if (upperBound <= 1)
-            {
-                throw new ArgumentException("Supplied value is less than the starting position, FizzBuzz will not occur");
-            }
+            ValidateFizzBuzzParameters(upperBound, moduloStatements);
 
             for (int i = 1; i <= upperBound; i++)
             {
@@ -97,6 +92,26 @@ namespace FizzBuzzEnterprise
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Ensures that the upper-bound limit and the custom modulo statements are valid
+        /// </summary>
+        /// <param name="upperBound">Where the FizzBuzz operation should stop</param>
+        /// <param name="statements">A list of <see cref="ModuloStatement"/> objects containing
+        /// custom modulo expressions to be validated and the output to return if the expression is
+        /// correct</param>
+        private void ValidateFizzBuzzParameters(int upperBound, List<ModuloStatement> statements)
+        {
+            if (upperBound <= 1)
+            {
+                throw new ArgumentException("Supplied value is less than the starting position, FizzBuzz will not occur");
+            }
+
+            if (!statements.Any())
+            {
+                throw new ArgumentException("There are no statements for FizzBuzz to evaluate");
+            }
         }
     }
 }

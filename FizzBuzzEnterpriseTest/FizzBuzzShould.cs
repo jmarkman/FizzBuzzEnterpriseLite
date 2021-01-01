@@ -44,7 +44,7 @@ namespace FizzBuzzEnterpriseTest
         [Test]
         public void ReturnFizzBuzz_IfDivisibleByThreeAndFive()
         {
-            var lastElement = _fizzBuzzUnderTest.RunHardcoded(NumberDivisibleByThreeAndFive).LastOrDefault();
+            var lastElement = _fizzBuzzUnderTest.Run(NumberDivisibleByThreeAndFive).LastOrDefault();
 
             Assert.That(lastElement, Is.EqualTo(DivisibleByThreeAndFiveOutput));
         }
@@ -52,7 +52,7 @@ namespace FizzBuzzEnterpriseTest
         [Test]
         public void ReturnFizz_IfDivisibleByThree()
         {
-            var lastElement = _fizzBuzzUnderTest.RunHardcoded(NumberDivisibleByThree).Last();
+            var lastElement = _fizzBuzzUnderTest.Run(NumberDivisibleByThree).Last();
 
             Assert.That(lastElement, Is.EqualTo(DivisibleByThreeOutput));
         }
@@ -60,7 +60,7 @@ namespace FizzBuzzEnterpriseTest
         [Test]
         public void ReturnBuzz_IfDivisibleByFive()
         {
-            var lastElement = _fizzBuzzUnderTest.RunHardcoded(NumberDivisibleByFive).Last();
+            var lastElement = _fizzBuzzUnderTest.Run(NumberDivisibleByFive).Last();
 
             Assert.That(lastElement, Is.EqualTo(DivisibleByFiveOutput));
         }
@@ -94,8 +94,8 @@ namespace FizzBuzzEnterpriseTest
         [Test]
         public void ThrowArgumentException_IfSuppliedUpperBound_IsLessThanOrEqualToOne()
         {
-            Assert.That(() => _fizzBuzzUnderTest.RunHardcoded(1).ToList(), Throws.TypeOf<ArgumentException>());
-            Assert.That(() => _fizzBuzzUnderTest.RunHardcoded(0).ToList(), Throws.TypeOf<ArgumentException>());
+            Assert.That(() => _fizzBuzzUnderTest.Run(1).ToList(), Throws.TypeOf<ArgumentException>());
+            Assert.That(() => _fizzBuzzUnderTest.Run(0).ToList(), Throws.TypeOf<ArgumentException>());
             Assert.That(() => _fizzBuzzUnderTest.Run(1, _moduloStatements).ToList(), Throws.TypeOf<ArgumentException>());
             Assert.That(() => _fizzBuzzUnderTest.Run(0, _moduloStatements).ToList(), Throws.TypeOf<ArgumentException>());
         }
