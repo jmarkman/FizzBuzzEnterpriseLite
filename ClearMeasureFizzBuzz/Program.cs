@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FizzBuzzEnterprise;
+using FizzBuzzOutput;
 
 namespace ClearMeasureFizzBuzz
 {
@@ -8,6 +9,14 @@ namespace ClearMeasureFizzBuzz
     {
         static void Main(string[] args)
         {
+            FizzBuzzDI fizzBuzzDI = new FizzBuzzDI(new ConsoleWriter());
+
+            fizzBuzzDI.Run(100);
+
+            Console.WriteLine();
+            Console.WriteLine("Now running with custom modulo statements");
+            Console.WriteLine();
+
             ModuloStatementBuilder statementBuilder = new ModuloStatementBuilder();
 
             List<ModuloStatement> statements = new List<ModuloStatement>()
@@ -26,7 +35,6 @@ namespace ClearMeasureFizzBuzz
             {
                 Console.WriteLine(item);
             }
-
         }
     }
 }

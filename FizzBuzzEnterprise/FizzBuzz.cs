@@ -7,8 +7,6 @@ namespace FizzBuzzEnterprise
 {
     public class FizzBuzz
     {
-        private IOutput _output;
-
         public FizzBuzz() { }
 
         /// <summary>

@@ -4,7 +4,8 @@ using System.Text;
 
 namespace FizzBuzzOutput
 {
-    public interface IOutput
+    public interface IOutput<T>
     {
+        T Output(T input);
     }
 }

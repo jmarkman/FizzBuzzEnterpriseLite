@@ -2,7 +2,7 @@
 
 namespace FizzBuzzOutput
 {
-    public class ConsoleWriter : IOutput
+    public class ConsoleWriter
     {
         public ConsoleWriter() { }
 
