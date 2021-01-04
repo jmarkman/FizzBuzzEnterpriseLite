@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{16AA9D7A-2
 		ConceptualDocumentation.md = ConceptualDocumentation.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzBuzzOutput", "FizzBuzzOutput\FizzBuzzOutput.csproj", "{BF23181C-DC95-4F72-B09B-5D360FE0B402}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{51D2D4DE-5343-4D48-873B-34A14938121C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51D2D4DE-5343-4D48-873B-34A14938121C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51D2D4DE-5343-4D48-873B-34A14938121C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF23181C-DC95-4F72-B09B-5D360FE0B402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF23181C-DC95-4F72-B09B-5D360FE0B402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF23181C-DC95-4F72-B09B-5D360FE0B402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF23181C-DC95-4F72-B09B-5D360FE0B402}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

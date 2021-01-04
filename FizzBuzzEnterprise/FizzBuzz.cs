@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FizzBuzzOutput;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,6 +7,8 @@ namespace FizzBuzzEnterprise
 {
     public class FizzBuzz
     {
+        private IOutput _output;
+
         public FizzBuzz() { }
 
         /// <summary>
