@@ -11,3 +11,7 @@ Great. Here's the next question: what if this had to exist in production somewhe
 ## More Information
 
 While I've strived to ensure that the code in this project is well-documented, I'll be including some extra Markdown files to talk about my approach to the tasks I was given. I'll copy the contents of it to the Wiki section on GitHub as well.
+
+## Dependency Injection
+
+The engineer I interviewed with in regards to this exercise discussed a dependency injection approach with me as one of their later questions for rendering output. While I much preferred the `yield` approach, I included some work on it in this repository, found under the branch `dependency-injection`.
